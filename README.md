@@ -14,4 +14,11 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
 
 *Please Note: Docker and Docker Compose must be installed. Instructions to set this up can be found [here](https://docs.docker.com/engine/security/rootless/#install). This project utilized rootless docker*.
 
+### Development
+1. Build the images and run the containers:
 
+    ```sh
+    $ docker-compose up -d --build
+    ```
+
+    Test it out at [http://localhost:7447](http://localhost:5000).  
