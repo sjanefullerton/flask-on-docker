@@ -11,6 +11,7 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
 1. Flask v2.3.2
 2. Docker v23.0.5
 3. Python v3.11.3
-*Docker and Docker Compose must be installed. Instructions to set this up can be found [here](https://docs.docker.com/engine/security/rootless/#install). This project utilized rootless docker*.
+
+*Please Note: Docker and Docker Compose must be installed. Instructions to set this up can be found [here](https://docs.docker.com/engine/security/rootless/#install). This project utilized rootless docker*.
 
 
