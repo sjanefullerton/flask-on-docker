@@ -83,17 +83,17 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
     ```
 ### Handling Static Files
 #### Development
-1. Re-build images and spin up containers: `docker-compose up -d --build`
+1. Re-build images and spin up containers: `$ docker-compose up -d --build`
 2. Ensure [http://localhost:7447/static/hello.txt](http://localhost:5001/static/hello.txt) serves up the file correctly
-3. Spin down development containers: `docker-compose down -v`
+3. Spin down development containers: `$ docker-compose down -v`
 #### Production
-1. Re-build images and spin up containers: `docker-compose -f docker-compose.prod.yml up -d --build`
+1. Re-build images and spin up containers: `$ docker-compose -f docker-compose.prod.yml up -d --build`
 2. Navigate to ensure static asset loaded correctly: [http://localhost:7447/static/hello.txt](http://localhost:5001/static/hello.txt)
-3. Spin down containers: `docker-compose -f docker-compose.prod.yml down -v`
+3. Spin down containers: `$ docker-compose -f docker-compose.prod.yml down -v`
 
 ### Handling Media Files
 #### Development
-1. Re-build images and spin up containers: `docker-compose up -d --build`
+1. Re-build images and spin up containers: `$ docker-compose up -d --build`
 2. Navigate to [http://localhost:7447/upload](http://localhost:7447/upload).
 * Upload an image
 * View the image at [http://localhost:7447/media/IMAGE_FILE_NAME](http://localhost:7447/media/IMAGE_FILE_NAME)
