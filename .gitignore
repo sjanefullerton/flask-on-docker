@@ -1,7 +1,1 @@
 .env.prod.db
-/venv/
-/services/web/project/__pycache__
-.dircolors
-.vimrc
-.git-prompt.sh
-.bashrc
