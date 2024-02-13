@@ -26,6 +26,6 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
 2. Navigate to test it at [http://localhost:7447](http://localhost:7447). You should see:
    ```sh
    {
-  "hello": "world"
+     "hello": "world"
    }
    ```
