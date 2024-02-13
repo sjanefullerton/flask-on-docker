@@ -50,7 +50,7 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
      ```
 3. Spin down development containers (and associated volumes with `-v` flag.)
     ```sh
-     $ docker compose down -v
+    $ docker-compose -f docker-compose.prod.yml down -v
     ```
 ### Apply the model to the database
 (*make sure to spin down development containers before proceeding*)
@@ -76,10 +76,36 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
     `# \dt`: List of relations
 
     `# q`: exit/quit
+4.  Navigate to test at [http://localhost:7447](http://localhost:7447)
+5. Bring down development containers
+    ```sh
+    $ docker-compose down -v
+    ```
+### Handling Static Files
+#### Development
+1. Re-build images and spin up containers: `docker-compose up -d --build`
+2. Ensure [http://localhost:7447/static/hello.txt](http://localhost:5001/static/hello.txt) serves up the file correctly
+3. Spin down development containers: `docker-compose down -v`
+#### Production
+1. Re-build images and spin up containers: `docker-compose -f docker-compose.prod.yml up -d --build`
+2. Navigate to ensure static asset loaded correctly: [http://localhost:7447/static/hello.txt](http://localhost:5001/static/hello.txt)
+3. Spin down containers: `docker-compose -f docker-compose.prod.yml down -v`
+
+### Handling Media Files
+#### Development
+1. Re-build images and spin up containers: `docker-compose up -d --build`
+2. Navigate to [http://localhost:7447/upload](http://localhost:7447/upload).
+* Upload an image
+* View the image at [http://localhost:7447/media/IMAGE_FILE_NAME](http://localhost:7447/media/IMAGE_FILE_NAME)
+3. Spin down development containers: `docker-compose down -v`
+#### Production
+1. Re-build:
+    ```sh
+    $ docker-compose -f docker-compose.prod.yml up -d --build
+    $ docker-compose -f docker-compose.prod.yml exec web python manage.py create_db
+    ```
+2. Test:
+* Upload an image at [http://localhost:7447/upload](http://localhost:7447/upload)
+* View image at [http://localhost:7447/media/IMAGE_FILE_NAME](http://localhost:7447/media/IMAGE_FILE_NAME)
 
 
-
-
-$ docker-compose -f docker-compose.prod.yml down -v
-$ docker-compose -f docker-compose.prod.yml up -d --build
-$ docker-compose -f docker-compose.prod.yml exec web python manage.py create_db
