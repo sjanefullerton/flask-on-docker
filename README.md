@@ -16,7 +16,7 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
 
 ### Development
 
-*Uses Postgres*
+*(Uses Postgres)*
 
 1. Build the images and spin up containers:
 
@@ -29,3 +29,57 @@ Using a modified Instagram tech stack, dockerizing Flask allows us to get a full
      "hello": "world"
    }
    ```
+3. Spin down development containers (and associated volumes with `-v` flag.)
+    ```sh
+    $ docker compose down -v
+    ```
+### Production
+
+*(Uses gunicorn & nginx)
+(*make sure to spin down development containers before proceeding*)
+
+1. Build the production images and spin up containers:
+    ```sh
+    $ docker-compose -f docker-compose.prod.yml up -d --build
+    ```
+2. Navigate to test it at [http://localhost:7447](http://localhost:7447). You should see:
+     ```sh
+     {
+       "hello": "world"
+     }
+     ```
+3. Spin down development containers (and associated volumes with `-v` flag.)
+    ```sh
+     $ docker compose down -v
+    ```
+### Apply the model to the database
+(*make sure to spin down development containers before proceeding*)
+1. Build new image and spin up containers:
+    ```sh
+    $ docker-compose up -d --build
+    ```
+2. Create the table:
+    ```sh
+    $ docker-compose exec web python manage.py create_db
+    ```
+3. Ensure table creation:
+    ```sh
+    $ docker-compose exec db psql --username=hello_flask --dbname=hello_flask_dev
+    ```
+    
+    Keys Information:
+    
+    `# \l`: List of databases
+    
+    `# \c hello_flask_dev`: connects to database "hello_flask_dev" as user "hello_flask"
+
+    `# \dt`: List of relations
+
+    `# q`: exit/quit
+
+
+
+
+$ docker-compose -f docker-compose.prod.yml down -v
+$ docker-compose -f docker-compose.prod.yml up -d --build
+$ docker-compose -f docker-compose.prod.yml exec web python manage.py create_db
